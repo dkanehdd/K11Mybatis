@@ -10,6 +10,13 @@
 <script src="../common/jquery/jquery-3.5.1.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+	function deleteRow(idx) {
+		if(confirm('삭제하시겠습니까?')){
+			location.href='delete.do?idx='+idx;
+		}
+	}
+</script>
 <div class="container">
 	<h3 class="text-center">방명록(한줄게시판)</h3>
 	
@@ -22,6 +29,7 @@
 		<input type="text" name="searchTxt" />
 		<input type="submit" value="검색" />
 	</form>
+	여러 단어를 검색하고 싶을때는 스페이스로 구분해주세요
 	</div>
 		
 	<div class="text-right">
@@ -57,12 +65,13 @@
 				</div>	  
 				<!--  수정,삭제버튼 -->
 				<div class="media-right">
+				<!-- 작성자 본인에게만 수정/삭제 버튼 보임처리 -->
 					<c:if test="${sessionScope.siteUserInfo.id eq row.id }">
 						<button class="btn btn-primary" 
 						onclick="location.href='modify.do?idx=${row.idx}'">
 						수정</button>
 						<button class="btn btn-danger" 
-						onclick="javascript:deleteRow(${row.idx});'">
+						onclick="javascript:deleteRow(${row.idx});">
 						삭제</button>
 					</c:if>
 				</div>

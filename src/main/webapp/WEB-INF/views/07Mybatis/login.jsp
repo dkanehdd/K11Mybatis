@@ -29,6 +29,7 @@ function loginValidate(f)
 	<h3>방명록(로그인)</h3> 
 	<c:choose>
 		<c:when test="${not empty sessionScope.siteUserInfo }">
+			<!-- 로그인이 된 경우에는 회원의 이름과 로그아웃 버튼을 출력 -->
 			<div class="row" style="border:2px solid #cccccc;padding:10px;">			
 				<h4>아이디:${sessionScope.siteUserInfo.id }</h4>
 				<h4>이름:${sessionScope.siteUserInfo.name }</h4>
@@ -43,8 +44,10 @@ function loginValidate(f)
 			</div>
 		</c:when>
 		<c:otherwise>
+			<!-- 로그아웃 상태에서는 로그인 폼을 출력한다. -->
 			<span style="font-size:1.5em; color:red;">${LoginNG }</span>
 			<form name="loginForm" method="post" action="./loginAction.do" onsubmit="return loginValidate(this);">
+				<!-- 로그인에 성공할 경우 이동할 페이지의 경로를 폼값으로 전송 -->
 				<input type="hidden" name="backUrl" value="${param.backUrl }"/>
 				<table class="table-bordered" style="width:50%;">
 					<tr>
