@@ -31,5 +31,5 @@ public interface MybatisDAOImpl {
 	필요없는경우 사용하지 않아도 된다.
 	 */
 	public int modify(MyBoardDTO myBoardDTO);
-	public void delete(String idx, String id);
+	public int delete(String idx, String id);
 }
